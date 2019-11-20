@@ -24,7 +24,7 @@ open (my $outh, '>', $out);
 my %dict;
 
 # sort abbrev by word length
-@unabbrev = sort {length $a <=> length $b} @unabbrev;
+# @unabbrev = sort {length $a <=> length $b} @unabbrev;
 
 foreach my $unab (@unabbrev) {
 	# remove vowels except for first
