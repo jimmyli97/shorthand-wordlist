@@ -1,8 +1,14 @@
 #!/usr/bin/perl
 use strict;
 use warnings;
+use Cwd;
+use autodie;
 
-open my $data, '<', 'words/20k_no5char.txt';
+my $dir = getcwd();
+# my @unabbrev = `head -n -10000 $dir/words/30k_editno5char.txt`;
+# chomp(@unabbrev);
+
+open my $data, '<', 'words/30k_editno5char.txt';
 chomp (my @unabbrev = <$data>);
 close $data;
 
