@@ -26,7 +26,7 @@ foreach my $unab (@unabbrev) {
 	my $cur = $novow;
 	# use re 'debug';
 	while (1) {
-		my $subbed = ($cur =~  s/^[a-z]\w*?\K[aeiou]//g);
+		my $subbed = ($cur =~  s/^[a-z]\w*\K[aeiou]//g);
 		if (exists($dict{$cur})) {
 			# repeat, can't remove all vowels
 			print $exceptionh "$cur\t$unab\n";
