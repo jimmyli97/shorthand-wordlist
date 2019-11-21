@@ -10,7 +10,7 @@ my $dir = getcwd();
 # chomp(@unabbrev);
 
 # remove all words shorter than _ chars
-my @unabbrev = `sed -r '/^.{,3}\$/d' $dir/words/30k_edit.txt`;
+my @unabbrev = `sed -r '/^.{,4}\$/d' $dir/words/30k_edit.txt`;
 chomp (@unabbrev);
 
 # open my $data, '<', 'words/30k_editno5char.txt';
