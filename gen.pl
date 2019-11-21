@@ -5,12 +5,17 @@ use Cwd;
 use autodie;
 
 my $dir = getcwd();
+# remove last 10k lines
 # my @unabbrev = `head -n -10000 $dir/words/30k_editno5char.txt`;
 # chomp(@unabbrev);
 
-open my $data, '<', 'words/30k_editno5char.txt';
-chomp (my @unabbrev = <$data>);
-close $data;
+# remove all words shorter than 6 chars
+my @unabbrev = `sed -r '/^.{,5}\$/d' $dir/words/30k_edit.txt`;
+chomp (@unabbrev);
+
+# open my $data, '<', 'words/30k_editno5char.txt';
+# chomp (my @unabbrev = <$data>);
+# close $data;
 
 my $dup = 'dup.txt';
 open (my $duph, '>', $dup);
