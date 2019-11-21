@@ -600,6 +600,7 @@ oct
 pay
 four
 poker
+stats
 status
 browse
 issue
@@ -2412,7 +2413,6 @@ aids
 opinions
 promote
 stated
-stats
 hawaii
 professionals
 appears
@@ -8349,7 +8349,6 @@ satin
 bon
 deserve
 attempting
-mailto
 representations
 worried
 tunes
@@ -14620,6 +14619,7 @@ ignorant
 aba
 allowable
 kart
+karat
 karate
 compositions
 sings
@@ -19601,7 +19601,6 @@ garde
 nox
 jams
 pancreatic
-tran
 manicures
 dyes
 sca
@@ -26278,7 +26277,6 @@ toefl
 vices
 amo
 keychains
-karat
 modis
 ginny
 egan
