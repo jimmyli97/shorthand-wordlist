@@ -13,9 +13,24 @@ my $dir = getcwd();
 my @unabbrev = `sed -r '/^.{,1}\$/d' $dir/words-google/20k.txt`;
 chomp (@unabbrev);
 
-# open my $data, '<', 'words/30k_editno5char.txt';
-# chomp (my @unabbrev = <$data>);
-# close $data;
+my $twoltr = 'words-custom/2letter.txt';
+open (my $twoltrh, '<', $twoltr);
+my %twoltrhash;
+while (<$twoltrh>) {
+	chomp($_);
+	$twoltrhash{$_} = 1;
+}
+close $twoltrh;
+
+my $threeltr = 'words-custom/3letter.txt';
+open (my $threeltrh, '<', $threeltr);
+my %threeltrhash;
+while (<$threeltrh>) {
+	chomp($_);
+	$threeltrhash{$_} = 1;
+}
+close $threeltrh;
+
 
 my $dup = 'dup.txt';
 open (my $duph, '>', $dup);
@@ -38,8 +53,10 @@ foreach my $unab (@unabbrev) {
 	# use re 'debug';
 	while (1) {
 		my $subbed = ($cur =~  s/^[a-z]\w*\K[aeiou]//g);
-		if (exists($dict{$cur})) {
-			# repeat, can't remove all vowels
+
+		if (exists($twoltrhash{$cur}) || exists($threeltrhash{$cur}) || exists($dict{$cur})) {
+			# can't collide with two or three letter words or is a repeat
+			# unable to remove all vowels
 			print $exceptionh "$cur\t$unab\n";
 			last;
 		} elsif (!$subbed){
