@@ -9,8 +9,8 @@ my $dir = getcwd();
 # my @unabbrev = `head -n -10000 $dir/words/30k_editno5char.txt`;
 # chomp(@unabbrev);
 
-# remove all words shorter than _ chars
-my @unabbrev = `sed -r '/^.{,1}\$/d' $dir/words-google/20k.txt`;
+# remove all words up to _ chars long
+my @unabbrev = `sed -r '/^.{,3}\$/d' $dir/words-google/20k.txt`;
 chomp (@unabbrev);
 
 my $twoltr = 'words-custom/2letter.txt';
@@ -44,7 +44,7 @@ open (my $outh, '>', $out);
 my %dict;
 
 # sort abbrev by word length
-@unabbrev = sort {length $a <=> length $b} @unabbrev;
+# @unabbrev = sort {length $a <=> length $b} @unabbrev;
 
 foreach my $unab (@unabbrev) {
 	# remove vowels except for first
