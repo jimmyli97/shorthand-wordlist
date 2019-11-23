@@ -5,12 +5,17 @@ use Cwd;
 use autodie;
 
 my $dir = getcwd();
+my $wordfile = 'words/30k_edit.txt';
 # remove last 10k lines
-# my @unabbrev = `head -n -10000 $dir/words/30k_editno5char.txt`;
+# my @unabbrev = `head -n -10000 $wordfile`;
 # chomp(@unabbrev);
 
+# spellcheck, lists only valid words
+my $spellchkcmd = "comm -23 <(sort -d $wordfile) <(sort -d <(aspell -d en_US  --size=10 --ignore-case list < $wordfile))";
+
 # remove all words up to _ chars long
-my @unabbrev = `sed -r '/^.{,3}\$/d' $dir/words-google/20k.txt`;
+my $rmcmd = 'sed -r "/^.{,3}$/d"';
+my @unabbrev = `bash -c '$rmcmd <($spellchkcmd)'`;
 chomp (@unabbrev);
 
 my $twoltr = 'words-custom/2letter.txt';
@@ -44,7 +49,7 @@ open (my $outh, '>', $out);
 my %dict;
 
 # sort abbrev by word length
-# @unabbrev = sort {length $a <=> length $b} @unabbrev;
+@unabbrev = sort {length $a <=> length $b} @unabbrev;
 
 foreach my $unab (@unabbrev) {
 	# remove vowels except for first
