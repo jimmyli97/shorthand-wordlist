@@ -2482,7 +2482,6 @@ clrk	clarke
 cld	claude
 cls	clause
 clns	cleans
-clnt	client
 clcks	clocks
 clns	clones
 clss	closes
